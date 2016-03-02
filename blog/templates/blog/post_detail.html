@@ -1,0 +1,35 @@
+{% extends 'blog/base.html' %}
+
+    {% block content %}
+        <article>
+
+            {% if post.published_date %}
+                <em> Published at <span class="glyphicon glyphicon-calendar"></span>
+                {{ post.published_date }}
+                </em>
+            {% endif %}
+
+            {% if post.category %}
+            <em> Category: 
+            <a href="{% url 'category' pk=post.category.pk %}">{{ post.category }} </a>
+            </em>
+            {% endif %}
+             {% if user.is_authenticated %}
+                <br>
+                <a href="{% url 'post_edit' pk=post.pk %}"><em>Edit</em></a>
+                <br>
+            {% endif %}
+            
+            <h3>{{ post.title }}</h3>
+            <p>{{ post.text|linebreaks }}</p>
+
+            {% if post.tag %}
+                <p> <strong> Tags: </strong>
+                {% for tag in post.tag.all %}
+                    <em><a href="{% url 'tag' pk=tag.pk %}">{{ tag }} </a></em>
+                    {% if not forloop.last %}, {% endif %}
+                {% endfor %}
+                </p>
+            {% endif %}
+        </article>
+    {% endblock %}

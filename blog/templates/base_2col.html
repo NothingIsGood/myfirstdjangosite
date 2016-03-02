@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block page %}
+
+
+    {% block sidebar %}
+    {% if user.is_authenticated %}
+     <a href="{% url 'blog.views.post_new' %}">Создать запись</a>
+     {% endif %}
+	{% endblock %}
+    
+    <div class="col-md-8">
+	{% block content %}
+
+	{% endblock %}
+</div>
+
+{% endblock %}

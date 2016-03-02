@@ -1,0 +1,8 @@
+
+	<div class="col-md-4">
+          <h4>Категории: </h4>
+          <ul>
+			{% for category in categories %}
+			<br> <li> <a href="{% url 'category' pk=category.pk %}"> {{ category }} </a> </li>
+			{% endfor %}
+			</ul>

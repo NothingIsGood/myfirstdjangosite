@@ -1,0 +1,33 @@
+{% extends "base_2col.html" %}
+{% load staticfiles %}
+
+	{% block title %}{% endblock %}
+
+	{% block menu %}
+	 	{% load mainmenu %}
+		{% show_menu %}
+	{% endblock %}
+	
+
+	{% block sidebar %}
+	{% load sidebar%}
+
+		{% show_sidebar %}
+
+		{% include "blog/about.html" %}
+
+		{% if user.is_authenticated %}
+		<br>
+     	<a href="{% url 'blog.views.post_new' %}">Создать запись</a>
+     	{% endif %}
+
+	{% endblock %}
+
+	
+
+
+	{% block footer %}
+		{% include "blog/footer.html" %}
+	{% endblock %}
+
+	

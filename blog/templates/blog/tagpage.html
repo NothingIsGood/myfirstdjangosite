@@ -1,0 +1,9 @@
+{% extends "blog/base.html" %} 
+{% block content %}
+    <h4>Статьи с тегом - {{ tag.name }}:</h4>
+    <ul>
+    	{% for post in posts %} 
+        	<li><a href="/post/{{ post.id }}">{{ post.title }}</a></li>
+    	{% endfor %}
+    </ul>
+{% endblock content %}

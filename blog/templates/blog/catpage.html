@@ -1,0 +1,9 @@
+{% extends "blog/base.html" %} 
+{% block content %}
+	<ul>
+    <h4>Статьи в категории - {{ category.name }}:</h4>
+    	{% for post in posts %}
+        	<li><a href="/post/{{ post.id }}">{{ post.title }}</a></li>
+    	{% endfor %}
+    </ul>
+{% endblock content %}

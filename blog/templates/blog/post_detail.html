@@ -21,7 +21,13 @@
             {% endif %}
             
             <h3>{{ post.title }}</h3>
+
+            {% autoescape off %}
             <p>{{ post.text|linebreaks }}</p>
+                {% if post.image %}
+                    <img src="{{ post.image.url }}"/>
+                {% endif %}
+            {% endautoescape %}
 
             {% if post.tag %}
                 <p> <strong> Tags: </strong>

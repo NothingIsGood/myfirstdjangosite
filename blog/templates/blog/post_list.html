@@ -5,9 +5,21 @@
    {% for post in posts %}
         <article>
             <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
-             <em>Published at: <span class="glyphicon glyphicon-calendar"> </span> {{ post.published_date }} by <span class="glyphicon glyphicon-user"></span> {{post.author}} </em>
+             <em>Published at: <span class="glyphicon glyphicon-calendar"> </span> {{ post.published_date  }} by <span class="glyphicon glyphicon-user"></span> {{post.author}} </em>
            
-            <p>{{ post.text|linebreaks }}</p>
+           {% autoescape off %}
+
+           {% if post.image %}
+                <div class="for_prewiev_image">
+                    <img src="{{ post.image.url }}"/>
+                </div>
+            {% endif %}
+
+            <p>{{ post.preview_text|linebreaks }}</p>
+            <b><a href="{% url 'post_detail' pk=post.pk %}"> Подробнее </a></b>
+
+            {% endautoescape %}
+
             {% if post.category %}
             <p> Category: <em><a href="{% url 'category' pk=post.category.pk %}">{{ post.category }} </a></em></p>
             {% endif %}

@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 
+
+
 class Page(models.Model):
 	"""Модель для страниц (для меню блога)"""
 	title = models.CharField(max_length=255)
@@ -26,13 +28,19 @@ class Post(models.Model):
 	author = models.ForeignKey('auth.User')
 	title = models.CharField(max_length=255)
 	text = models.TextField()
+	preview_text = models.TextField(blank=True, null=True)
+	image = models.ImageField(upload_to="images/")
 	created_date = models.DateTimeField(default=timezone.now)
 	published_date = models.DateTimeField(blank=True,null=True)
 
-	tag = models.ManyToManyField(Tag, blank = True, null = True)
+	tag = models.ManyToManyField(Tag, blank = False, null = False)
 	category = models.ForeignKey(Category, blank = True, null = True)
 
 	def publish(self):
+		if len(self.text) < 128:
+			self.preview_text = self.text
+		else:
+			self.preview_text = self.text[0:128]
 		self.published_date = timezone.now()
 		self.save()
 

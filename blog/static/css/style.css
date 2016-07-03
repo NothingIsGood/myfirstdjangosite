@@ -1,4 +1,14 @@
-﻿.row .col-md-4 h4{
+﻿.for_prewiev_image > img {
+    position: inline;
+}
+
+.row .col-md-8 article img {
+    max-width: 400px;
+    height: auto;
+
+}
+
+.row .col-md-4 h4{
 	text-align: center;
 	color: #3163CC;
 }

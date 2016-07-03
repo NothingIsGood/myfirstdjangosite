@@ -2,5 +2,7 @@
 
 {% block content %}
 <h4> {{ page.title }}</h4>
+{% autoescape off %}
 <p> {{ page.text|linebreaks }} </p>
+{% endautoescape %}
 {% endblock %}
